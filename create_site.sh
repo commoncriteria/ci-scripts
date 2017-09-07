@@ -84,7 +84,7 @@ function createWebsite {
               <ul id="slide-out" class="side-nav">
                   <li><a href="https://github.com/commoncriteria">Common Criteria Github</a></li>
                   <li><a href="https://www.niap-ccevs.org/Profile/">NIAP Protection Profiles</a></li>
-                  <li><a href="http://common-criteria.rhcloud.com/transforms/schemas/CCProtectionProfile.html">Schema Documentation</a></li>
+                  <li><a href="https://commoncriteria.github.io/pp/transforms/CCProtectionProfile.html">Schema Documentation</a></li>
               </ul>
               <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
               <!--Navigation bar Header-->
