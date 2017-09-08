@@ -70,6 +70,18 @@ function createWebsite {
     	        height: auto;
     	      }
 
+			  span.pp_title {
+				float: left;
+			  }
+
+			  span.build_status {
+				float: right;
+			  }
+			
+			  img.build_status {
+				vertical-align: middle;
+			  }
+
           </style>
 
           <!--Let browser know website is optimized for mobile-->
@@ -100,7 +112,7 @@ function createWebsite {
 EOF
         for aa in ${PP_NAMES[@]}; do
             echo "<li>
-                <div class='collapsible-header'><i class='material-icons'>folder</i>$aa</div>"
+                <div class='collapsible-header'><span class='pp_title'><i class='material-icons'>folder</i>$aa</span><span class='build_status'><img class='build_status' src='https://travis-ci.org/commoncriteria/$aa.svg?branch=master'></span></div>"
             echo "<div class='collapsible-body'>
                     <table class='bordered striped'>
                       <thead>
