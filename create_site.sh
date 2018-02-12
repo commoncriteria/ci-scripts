@@ -22,7 +22,7 @@ function createWebsite {
           <!--Import Google Icon Font-->
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
           <!-- Compiled and minified CSS -->
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
           <style type="text/css">
                   nav {
@@ -44,6 +44,14 @@ function createWebsite {
 
                   .collapsible {
                       margin: 1rem 0 1rem 0;
+                  }
+		  
+		  .collapsible-body {
+                      padding: 0;
+                  }
+
+                  .collapsible-header {
+                      padding: .5rem;
                   }
 
     	      .pdf-image, .pdf-image:after {
@@ -69,18 +77,21 @@ function createWebsite {
                     max-width: 32px;
     	        height: auto;
     	      }
+	      
+	      span.pp_title {
+		float: left;
+                width: 50%;
+	      }
 
-			  span.pp_title {
-				float: left;
-			  }
+	      span.build_status {
+		float: right;
+                width: 50%;
+	      }
 
-			  span.build_status {
-				float: right;
-			  }
-			
-			  img.build_status {
-				vertical-align: middle;
-			  }
+	      img.build_status {
+		vertical-align: middle;
+                float: right;
+	      }
 
           </style>
 
@@ -90,7 +101,6 @@ function createWebsite {
         </head>
 
         <body>
-          <div class="navbar-fixed">
             <nav>
               <!--Slide Out Navigation-->
               <ul id="slide-out" class="side-nav">
@@ -104,7 +114,6 @@ function createWebsite {
                 <a href="#!" class="brand-logo">Common Criteria Documents</a>
               </div>
             </nav>
-          </div>
 
           <!--Main Page Content-->
           <div class="container">
@@ -159,9 +168,9 @@ EOF
 
 
           <!--Import jQuery before materialize.js-->
-          <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
+          <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
           <!-- Compiled and minified JavaScript -->
-          <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js'></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
           <script type='text/javascript'>
             \$('.button-collapse').sideNav();
