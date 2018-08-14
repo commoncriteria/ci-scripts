@@ -27,29 +27,29 @@ def log(level, msg):
     sys.stderr.write("\n")
 
 
+def handle_element(elem):
+    if elem.tag.startswith("{http://www.w3.org/1999/XSL/Transform}"):
+        return ""
+    tagr = elem.tag.split('}')
+    noname=tagr[len(tagr)-1]
+    if noname=="br":
+        return "<br/>"
+    elif noname=="td" or noname=='tr':
+        noname="div"
+    ret = "<" + noname
+    for attrname in elem.attrib:
+        ret += " " + attrname + "='"+ escape(elem.attrib[attrname])+"'"
+    ret += ">"
+    ret += handle_children(elem)
+    ret += '</' + noname +'>'
+    return ret
 
-
-
-def gather_contents(elem):
+def handle_children(elem):
     ret=""
     if elem.text:
         ret += escape(elem.text)
     for child in elem:
-        if child.tag.startswith("{http://www.w3.org/1999/XSL/Transform}"):
-            continue
-        tagr = child.tag.split('}')
-        noname=tagr[len(tagr)-1]
-        if noname=="br":
-            ret += "<br/>"
-            continue
-        elif noname=="td" or noname=='tr':
-            noname="div"
-        ret += "<" + noname
-        for attrname in child.attrib:
-            ret += " " + attrname + "='"+ escape(child.attrib[attrname])+"'"
-        ret += ">"
-        ret += gather_contents(child)
-        ret += '</' + noname +'>'
+        ret += handle_element(child)
         if child.tail:
             ret += child.tail
     return ret
@@ -58,7 +58,7 @@ def gather_contents(elem):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: bp-documentor <boilerplate-xsl-file>")
+        warn("Usage: bp-documentor <boilerplate-xsl-file>")
         sys.exit(0)
 
     infile=sys.argv[1]
@@ -69,9 +69,11 @@ if __name__ == "__main__":
 
     print("<html><head><title>Boilerplates</title></head><body><table>")
     for el in root.findall(".//xsl:template[@match]", ns):
-        contents = gather_contents(el)
+        contents = handle_children(el)
         if contents != "":
-            print("<tr><td style='background: green;'>"+el.attrib["match"]+"</td></tr><tr><td style='background: lightblue;'>"+contents+"</td></tr>")
-    print("</table>")
+            print("<tr><td style='background: lightgreen;'>"+el.attrib["match"]+"</td></tr>")
+            print("<tr><td style='background: lightblue; max-width: 900px; margin: auto;'>"+contents+"</td></tr>")
+            print("<tr><td vspan='2'/><br/></tr>")
+    print("</table><br/><br/>")
     print("</body></html>")
 
