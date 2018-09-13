@@ -111,7 +111,9 @@ function createWebsite {
                   <li><a href="https://github.com/commoncriteria" target="_blank">Common Criteria Github</a></li>
                   <li><a href="https://www.niap-ccevs.org/Profile/" target="_blank">NIAP Protection Profiles</a></li>
                   <li><a href="https://github.com/commoncriteria/pp-template/wiki" target="_blank">PP Dev Wiki</a></li>
-                  <li><a href="https://commoncriteria.github.io/pp/transforms/CCProtectionProfile.html" target="_blank">Schema Documentation</a></li>
+                  <li><a href="https://commoncriteria.github.io/pp/transforms/CCProtectionProfile.rng.html" target="_blank">PP Schema Docs</a></li>
+                  <li><a href="https://commoncriteria.github.io/pp/transforms/CCModule.rng.html" target="_blank">Module Schema Docs</a></li>
+                  <li><a href="https://commoncriteria.github.io/pp/transforms/ConfigAnnex.rng.html" target="_blank">ConfigAnnex Schema Docs</a></li>
               </ul>
               <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
               <!--Navigation bar Header-->
