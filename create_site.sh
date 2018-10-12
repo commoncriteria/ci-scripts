@@ -85,7 +85,7 @@ function createWebsite {
                     max-width: 32px;
     	        height: auto;
     	      }
-	      
+
 	      span.pp_title {
 		float: left;
                 width: 50%;
@@ -184,13 +184,13 @@ EOF
           <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
           <script type='text/javascript'>
-            $('.collapsible').collapsible();
-            $('.sidenav').sidenav();
+            \$('.collapsible').collapsible();
+            \$('.sidenav').sidenav();
           </script>
         </body>
       </html>"
     ) > ${PP_JOBS_DIR}/index.html
-} 
+}
 
 # Build Update website
 findProtectionProfiles
