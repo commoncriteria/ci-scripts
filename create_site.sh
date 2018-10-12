@@ -25,6 +25,10 @@ function createWebsite {
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
           <style type="text/css">
+                  body {
+                    overflow-x: hidden;
+                    overflow-y: scroll;
+                  }
                   nav {
                     background-color: rgb(63,81,181);
                     }
@@ -45,16 +49,16 @@ function createWebsite {
                   .collapsible {
                       margin: 1rem 0 1rem 0;
                   }
-		  
-		  .collapsible-body {
+
+        		  .collapsible-body {
                       padding: 0;
                   }
 
                   .collapsible-header {
                       padding: .5rem;
                   }
-		  
-		  .collapsible-header i {
+
+	        	  .collapsible-header i {
                       vertical-align: middle;
                   }
 
