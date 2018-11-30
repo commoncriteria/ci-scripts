@@ -22,9 +22,13 @@ function createWebsite {
           <!--Import Google Icon Font-->
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
           <!-- Compiled and minified CSS -->
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
           <style type="text/css">
+                  body {
+                    overflow-x: hidden;
+                    overflow-y: scroll;
+                  }
                   nav {
                     background-color: rgb(63,81,181);
                     }
@@ -45,16 +49,16 @@ function createWebsite {
                   .collapsible {
                       margin: 1rem 0 1rem 0;
                   }
-		  
-		  .collapsible-body {
+
+        		  .collapsible-body {
                       padding: 0;
                   }
 
                   .collapsible-header {
                       padding: .5rem;
                   }
-		  
-		  .collapsible-header i {
+
+	        	  .collapsible-header i {
                       vertical-align: middle;
                   }
 
@@ -81,7 +85,7 @@ function createWebsite {
                     max-width: 32px;
     	        height: auto;
     	      }
-	      
+
 	      span.pp_title {
 		float: left;
                 width: 50%;
@@ -107,14 +111,16 @@ function createWebsite {
         <body>
             <nav>
               <!--Slide Out Navigation-->
-              <ul id="slide-out" class="side-nav">
+              <ul id="slide-out" class="sidenav">
                   <li><a href="https://github.com/commoncriteria" target="_blank">Common Criteria Github</a></li>
                   <li><a href="https://www.niap-ccevs.org/Profile/" target="_blank">NIAP Protection Profiles</a></li>
                   <li><a href="https://github.com/commoncriteria/pp-template/wiki" target="_blank">PP Dev Wiki</a></li>
-                  <li><a href="https://commoncriteria.github.io/pp/transforms/CCProtectionProfile.html" target="_blank">Schema Documentation</a></li>
+                  <li><a href="https://commoncriteria.github.io/pp/transforms/CCProtectionProfile.rng.html" target="_blank">PP Schema Docs</a></li>
+                  <li><a href="https://commoncriteria.github.io/pp/transforms/CCModule.rng.html" target="_blank">Module Schema Docs</a></li>
+                  <li><a href="https://commoncriteria.github.io/pp/transforms/ConfigAnnex.rng.html" target="_blank">ConfigAnnex Schema Docs</a></li>
                   <li><a href="https://commoncriteria.github.io/pp/transforms/BoilerplateSummary.html" target="_blank">Boilerplates</a></li>
               </ul>
-              <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+              <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
               <!--Navigation bar Header-->
               <div class="nav-wrapper">
                 <a href="#!" class="brand-logo">Common Criteria Documents</a>
@@ -176,15 +182,16 @@ EOF
           <!--Import jQuery before materialize.js-->
           <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
           <!-- Compiled and minified JavaScript -->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
           <script type='text/javascript'>
-            \$('.button-collapse').sideNav();
+            \$('.collapsible').collapsible();
+            \$('.sidenav').sidenav();
           </script>
         </body>
       </html>"
     ) > ${PP_JOBS_DIR}/index.html
-} 
+}
 
 # Build Update website
 findProtectionProfiles
