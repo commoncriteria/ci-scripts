@@ -118,6 +118,7 @@ function createWebsite {
                   <li><a href="https://commoncriteria.github.io/pp/transforms/CCProtectionProfile.rng.html" target="_blank">PP Schema Docs</a></li>
                   <li><a href="https://commoncriteria.github.io/pp/transforms/CCModule.rng.html" target="_blank">Module Schema Docs</a></li>
                   <li><a href="https://commoncriteria.github.io/pp/transforms/ConfigAnnex.rng.html" target="_blank">ConfigAnnex Schema Docs</a></li>
+                  <li><a href="https://commoncriteria.github.io/pp/transforms/TechnicalDecisions.rng.html" target="_blank">Technical Decisions Schema Docs</a></li>
                   <li><a href="https://commoncriteria.github.io/pp/transforms/BoilerplateSummary.html" target="_blank">Boilerplates</a></li>
               </ul>
               <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
