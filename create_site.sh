@@ -194,6 +194,31 @@ EOF
     ) > ${PP_JOBS_DIR}/index.html
 }
 
+function findDirectory() {
+    it=$1
+
+    #-- Is it called via the PATH
+    if which $it  1>/dev/null 2>&1 ; then         # If it's in the path
+    	it=$(which $it)                           # Get where it is 
+    fi
+    #-- Check to see if it's a symlink
+    if readlink $it >/dev/null; then              # If it's a link
+	it=$(readlink $it)	                  # Then resolve it
+    fi
+
+    #-- Fix it up
+    DIR=${it%/*}		                  # Strip off the end
+    if [ "$DIR" == "$it" ]; then                  # If they're equal (no directories)
+    	DIR="."			                  # Set the current directory
+    fi
+    echo $DIR
+}
+
+# Find where we are
+DIR=$(findDirectory $0)
+
+
+
 # Build Update website
 findProtectionProfiles
 createWebsite
@@ -201,4 +226,6 @@ if [ $? -eq 1 ]; then
     echo "Failed to create updated Protection Profile Website!"
     exit 1
 fi
+cp $DIR/Encapsulator.html $PP_JOBS_DIR
+
 exit 0
