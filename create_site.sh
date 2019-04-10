@@ -226,6 +226,7 @@ if [ $? -eq 1 ]; then
     echo "Failed to create updated Protection Profile Website!"
     exit 1
 fi
-cp $DIR/Encapsulator.html $PP_JOBS_DIR
+pwd
+cp $DIR/Encapsulator.html $PP_JOBS_DIR || true
 
 exit 0
