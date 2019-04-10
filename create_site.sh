@@ -217,7 +217,7 @@ function findDirectory() {
 # Find where we are
 DIR=$(findDirectory $0)
 
-
+cp $DIR/Encapsulator.html $PP_JOBS_DIR || true
 
 # Build Update website
 findProtectionProfiles
@@ -226,7 +226,5 @@ if [ $? -eq 1 ]; then
     echo "Failed to create updated Protection Profile Website!"
     exit 1
 fi
-pwd
-cp $DIR/Encapsulator.html $PP_JOBS_DIR || true
 
 exit 0
