@@ -10,12 +10,12 @@ function createPDFs {
 
     for aa in $(find ${PP_JOBS_DIR}/${PP_NAME} -mindepth 1 -name '*.html'); do
           # Make the PDF
-    	    wkhtmltopdf --javascript-delay 15000 file://${aa}?expand=on $PP_JOBS_DIR/$PP_NAME/$(basename ${aa%%.html}.pdf)
+    	    wkhtmltopdf "$@" --javascript-delay 15000 file://${aa}?expand=on $PP_JOBS_DIR/$PP_NAME/$(basename ${aa%%.html}.pdf)
           if [ $? -eq 1 ]; then
               exitStatus=1
               return $exitStatus
           fi
-    	    wkhtmltopdf --javascript-delay 15000 --footer-right '[page]' file://${aa}?expand=on $PP_JOBS_DIR/$PP_NAME/$(basename ${aa%%.html}-paged.pdf)
+    	    wkhtmltopdf "$@" --javascript-delay 15000 --footer-right '[page]' file://${aa}?expand=on $PP_JOBS_DIR/$PP_NAME/$(basename ${aa%%.html}-paged.pdf)
           if [ $? -eq 1 ]; then
               exitStatus=2
               return $exitStatus
@@ -25,7 +25,7 @@ function createPDFs {
 }
 
 # Generate PDF Files
-createPDFs
+createPDFs "$@"
 if [ $? -eq 1 ]; then
     echo "Failed to create a PDF file!"
     exit 1
