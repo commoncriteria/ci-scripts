@@ -2,6 +2,14 @@
 
 set -ev
 PP_JOBS_DIR=$TRAVIS_BUILD_DIR/commoncriteria.github.io
+CURRENTLY_BUILDING=$(basename $TRAVIS_REPO_SLUG)
+
+function duplicate_index {
+    cp $PP_JOBS_DIR/index.html $PP_JOBS_DIR/index.html.bak
+}
+function delete_backup_index {
+    rm $PP_JOBS_DIR/index.html.bak
+}
 
 # Obtain path of protection profiles and protection profile names
 function findProtectionProfiles {
@@ -153,7 +161,7 @@ EOF
                 pdffile="${basename}.pdf"
                 pdfpaged="${basename}-paged.pdf"
                 # Paths for index.html that resides on openshift web server.
-		htmlfile_url=$(sed -E "s/.*\/(pp\/$aa\/.*)/\1/g" <<< $htmlfile)
+		        htmlfile_url=$(sed -E "s/.*\/(pp\/$aa\/.*)/\1/g" <<< $htmlfile)
                 pdf_url=${htmlfile_url%%html}pdf
     	        pdf_paged_url=${htmlfile_url%%.html}-paged.pdf
 
@@ -168,7 +176,12 @@ EOF
     		        echo "<a href='$pdf_paged_url'><img class='num-pdf-image' title='PDF w/ Page Numbering'></img></a>"
     		    fi
     	        echo "</td><td>"
-                stat -c "%.16z" ${htmlfile}
+                if [ "$CURRENTLY_BUILDING" == "$aa" ]; then
+                    stat -c "%.16z" ${htmlfile}
+                else
+                    PAST_DATE=$($TRAVIS_BUILD_DIR/ci-scripts/last_build_date.py $aa)
+                    echo "$PAST_DATE"
+                fi
                 echo "</td></tr>"
             done
             echo "      </tbody>
@@ -221,7 +234,9 @@ cp $DIR/Encapsulator.html $PP_JOBS_DIR || true
 
 # Build Update website
 findProtectionProfiles
+duplicate_index
 createWebsite
+delete_backup_index
 if [ $? -eq 1 ]; then
     echo "Failed to create updated Protection Profile Website!"
     exit 1
