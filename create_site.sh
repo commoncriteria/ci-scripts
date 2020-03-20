@@ -141,8 +141,10 @@ function createWebsite {
             <ul class="collapsible" data-collapsible="accordion">
 EOF
         for aa in ${PP_NAMES[@]}; do
+            cd transforms
+            TRNVER=$(git branch|cut -c 3-)-$(git rev-parse HEAD|cut -c -8)
             echo "<li>
-                <div class='collapsible-header'><span class='pp_title'><i class='material-icons'>folder</i>$aa</span><span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
+                <div class='collapsible-header'><span class='pp_title'><i class='material-icons'>folder</i>$aa</span>Transforms: $TRNVER<span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
             echo "<div class='collapsible-body'>
                     <table class='bordered striped'>
                       <thead>
