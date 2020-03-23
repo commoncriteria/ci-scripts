@@ -142,12 +142,12 @@ function createWebsite {
 EOF
         for aa in ${PP_NAMES[@]}; do
             if [ -d transforms]; then
-              pushd transforms
-              TRNVER=$(git branch|cut -c 3-)-$(git rev-parse HEAD|cut -c -8)
-              popd
+              pushd transforms > /dev/null
+              T_VER="Transforms: $(git branch|cut -c 3-)-$(git rev-parse HEAD|cut -c -8)"
+              popd > /dev/null
             fi
             echo "<li>
-                <div class='collapsible-header'><span class='pp_title'><i class='material-icons'>folder</i>$aa</span>Transforms: $TRNVER<span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
+                <div class='collapsible-header'><span class='pp_title'><i class='material-icons'>folder</i>$aa</span>$T_VER<span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
             echo "<div class='collapsible-body'>
                     <table class='bordered striped'>
                       <thead>
