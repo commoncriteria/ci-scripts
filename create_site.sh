@@ -141,7 +141,7 @@ function createWebsite {
             <ul class="collapsible" data-collapsible="accordion">
 EOF
         for aa in ${PP_NAMES[@]}; do
-            if [ -d transforms]; then
+            if [ -d transforms ]; then
               pushd transforms > /dev/null
               T_VER="Transforms: $(git branch|cut -c 3-)-$(git rev-parse HEAD|cut -c -8)"
               popd > /dev/null
