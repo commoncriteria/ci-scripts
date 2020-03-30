@@ -141,10 +141,11 @@ function createWebsite {
             <ul class="collapsible" data-collapsible="accordion">
 EOF
         for aa in ${PP_NAMES[@]}; do
-            find $PP_JOBS_DIR/pp/$aa -name '*.txt' >&2
             if [ -r ${PP_JOBS_DIR}/pp/$aa/transforms-version.txt ]; then
                T_VER=$(cat ${PP_JOBS_DIR}/pp/$aa/transforms-version.txt)
             fi
+            pwd >&2
+            find $PP_JOBS_DIR/pp/$aa  >&2
             echo "T_VER is $T_VER" >&2
             echo "<li>
                 <div class='collapsible-header'><span class='pp_title'><i class='material-icons'>folder</i>$aa</span>$T_VER<span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
