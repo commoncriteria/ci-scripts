@@ -141,10 +141,8 @@ function createWebsite {
             <ul class="collapsible" data-collapsible="accordion">
 EOF
         for aa in ${PP_NAMES[@]}; do
-            if [ -d transforms ]; then
-              pushd transforms > /dev/null
-              T_VER="Transforms: $(git branch|cut -c 3-)-$(git rev-parse HEAD|cut -c -8)"
-              popd > /dev/null
+            if [ -r $aa/transforms_version.txt ]; then
+               T_VER=$(cat $aa/transforms_version.txt)
             fi
             echo "T_VER is $T_VER" >&2
             echo "<li>
@@ -236,7 +234,7 @@ function findDirectory() {
 # Find where we are
 DIR=$(findDirectory $0)
 
-cp $DIR/Encapsulator.html $PP_JOBS_DIR || true
+# cp $DIR/Encapsulator.html $PP_JOBS_DIR || true
 
 # Build Update website
 findProtectionProfiles
