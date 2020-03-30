@@ -141,7 +141,7 @@ function createWebsite {
             <ul class="collapsible" data-collapsible="accordion">
 EOF
         for aa in ${PP_NAMES[@]}; do
-            find $PP_JOBS_DIR/pp/$aa -name '*.txt'> &2
+            find $PP_JOBS_DIR/pp/$aa -name '*.txt' >&2
             if [ -r ${PP_JOBS_DIR}/pp/$aa/transforms-version.txt ]; then
                T_VER=$(cat ${PP_JOBS_DIR}/pp/$aa/transforms-version.txt)
             fi
