@@ -1,6 +1,10 @@
 #!/bin/bash
-
 set -ev
+# This is the transforms commit branch/timestamp that all projects should
+# basically be building to. It's hardcoded right here (not optimal), but
+# it'll do for now.
+IDEAL_TRANSFORMS="master-2020-03-31_13:57:45_+0000"
+
 PP_JOBS_DIR=$TRAVIS_BUILD_DIR/commoncriteria.github.io
 CURRENTLY_BUILDING=$(basename $TRAVIS_REPO_SLUG)
 
@@ -108,7 +112,9 @@ function createWebsite {
 		vertical-align: middle;
                 float: right;
 	      }
-
+          span.ideal-transforms{
+             color: green;
+          }
           </style>
 
           <!--Let browser know website is optimized for mobile-->
@@ -141,13 +147,16 @@ function createWebsite {
             <ul class="collapsible" data-collapsible="accordion">
 EOF
         for aa in ${PP_NAMES[@]}; do
-            T_VER=""
+            T_STATUS=""
             if [ -r ${PP_JOBS_DIR}/pp/$aa/transforms-version.txt ]; then
                T_VER=$(cat ${PP_JOBS_DIR}/pp/$aa/transforms-version.txt)
+               if [ "$IDEAL_TRANFORMS" == "$T_VER"]; then
+                 T_STATUS='<span class="ideal-transforms">T</span>'
+               fi
             fi
             pwd >&2
             echo "<li>
-                <div class='collapsible-header'><span class='pp_title'><i class='material-icons'>folder</i>$aa</span><span class="transforms-version">$T_VER</span><span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
+                <div class='collapsible-header'><span class='pp_title'><i class='material-icons'>folder</i>$aa</span>$T_STATUS<span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
             echo "<div class='collapsible-body'>
                     <table class='bordered striped'>
                       <thead>
