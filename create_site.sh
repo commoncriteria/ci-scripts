@@ -112,7 +112,7 @@ function createWebsite {
 		vertical-align: middle;
                 float: right;
 	      }
-          span.ideal-transforms{
+          uses_current_transforms{
              color: green;
           }
           </style>
@@ -149,18 +149,16 @@ EOF
         for aa in ${PP_NAMES[@]}; do
             T_STATUS=""
             T_VER=""
-#            if [ -r ${PP_JOBS_DIR}/pp/$aa/transforms-version.txt ]; then
-#               T_VER=$(cat ${PP_JOBS_DIR}/pp/$aa/transforms-version.txt)
-#               if [ "$IDEAL_TRANFORMS" == "$T_VER"]; then
-#                 T_STATUS='<span class="ideal-transforms">T</span>'
-#               fi
-#               T_VER="<div class='transforms-version'>Transforms: $T_VER</div>"
-#            fi
+            if [ -r ${PP_JOBS_DIR}/pp/$aa/transforms-version.txt ]; then
+               T_VER=$(cat ${PP_JOBS_DIR}/pp/$aa/transforms-version.txt)
+               if [ "$IDEAL_TRANFORMS" == "$T_VER"]; then
+                 T_STATUS=' uses_current_transforms'
+               fi
+            fi
             pwd >&2
             echo "<li>
-                <div class='collapsible-header'><span class='pp_title'><i class='material-icons'>folder</i>$aa</span>$T_STATUS<span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
+                <div class='collapsible-header'><span class='pp_title$T_STATUS'><i class='material-icons'>folder</i>$aa</span><span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
             echo "<div class='collapsible-body'>
-                    $T_VER
                     <table class='bordered striped'>
                       <thead>
                         <tr>
