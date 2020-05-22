@@ -159,8 +159,8 @@ EOF
                fi
             fi
             pwd >&2
-	    echo "T_VER is $T_VER" > &2
-	    echo "T_STATUS is $T_STATUS" > &2
+	    echo "T_VER is $T_VER" >&2
+	    echo "T_STATUS is $T_STATUS" >&2
             echo "<li>
                 <div class='collapsible-header'><span class='pp_title$T_STATUS'><i class='material-icons'>folder</i>$aa</span><span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
             echo "<div class='collapsible-body'>
