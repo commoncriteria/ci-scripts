@@ -154,7 +154,7 @@ EOF
             if [ -r "$META_FILE" ]; then
                T_VER=$(grep '^T_VER=' $META_FILE)
 	       BUILD_TIME=$(grep '^BUILD_TIME=' $META_FILE | tail -c +12)
-               if [ "$IDEAL_TRANFORMS" == "$T_VER" ]; then
+               if [ "$IDEAL_TRANSFORMS" == "$T_VER" ]; then
                  T_STATUS=' uses_current_transforms'
                fi
             fi
