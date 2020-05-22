@@ -3,7 +3,7 @@ set -ev
 # This is the transforms commit branch/timestamp that all projects should
 # basically be building to. It's hardcoded right here (not optimal), but
 # it'll do for now.
-IDEAL_TRANSFORMS="T_VER=master-2020-05-21_13:43:12_-0400"
+IDEAL_TRANSFORMS="T_VER=master-2020-05-22_12:06:18_-0400"
 
 PP_JOBS_DIR=$TRAVIS_BUILD_DIR/commoncriteria.github.io
 CURRENTLY_BUILDING=$(basename $TRAVIS_REPO_SLUG)
@@ -149,13 +149,18 @@ EOF
         for aa in ${PP_NAMES[@]}; do
             T_STATUS=""
             T_VER=""
-            if [ -r ${PP_JOBS_DIR}/pp/$aa/meta-info.txt ]; then
-               T_VER=$(grep '^T_VER=' ${PP_JOBS_DIR}/pp/$aa/meta-info.txt)
+	    BUILD_TIME=""
+	    META_FILE=${PP_JOBS_DIR}/pp/$aa/meta-info.txt
+            if [ -r "$META_FILE" ]; then
+               T_VER=$(grep '^T_VER=' $META_FILE)
+	       BUILD_TIME=$(grep '^BUILD_TIME=' $META_FILE | tail -c +12)
                if [ "$IDEAL_TRANFORMS" == "$T_VER" ]; then
                  T_STATUS=' uses_current_transforms'
                fi
             fi
             pwd >&2
+	    echo "T_VER is $T_VER" > &2
+	    echo "T_STATUS is $T_STATUS" > &2
             echo "<li>
                 <div class='collapsible-header'><span class='pp_title$T_STATUS'><i class='material-icons'>folder</i>$aa</span><span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
             echo "<div class='collapsible-body'>
@@ -194,7 +199,8 @@ EOF
                 if [ "$CURRENTLY_BUILDING" == "$aa" ]; then
                     stat -c "%.16z" ${htmlfile}
                 else
-                    PAST_DATE=$($TRAVIS_BUILD_DIR/ci-scripts/last_build_date.py $aa)
+		    PAST_DATE=$BUILD_TIME
+#                    PAST_DATE=$($TRAVIS_BUILD_DIR/ci-scripts/last_build_date.py $aa)
                     echo "$PAST_DATE"
                 fi
                 echo "</td></tr>"
