@@ -7,6 +7,9 @@ IDEAL_TRANSFORMS="T_VER=master-2020-05-22_12:06:18_-0400"
 
 PP_JOBS_DIR=$TRAVIS_BUILD_DIR/commoncriteria.github.io
 CURRENTLY_BUILDING=$(basename $TRAVIS_REPO_SLUG)
+function info(){
+    echo $1 >&2
+}
 
 function duplicate_index {
     cp $PP_JOBS_DIR/index.html $PP_JOBS_DIR/index.html.bak
@@ -159,8 +162,9 @@ EOF
                fi
             fi
             pwd >&2
-	    echo "T_VER is $T_VER" >&2
-	    echo "T_STATUS is $T_STATUS" >&2
+	    info "Look for $IDEAL_TRANSFORMS"
+	    info "T_VER is $T_VER"
+	    info "T_STATUS is $T_STATUS"
             echo "<li>
                 <div class='collapsible-header'><span class='pp_title$T_STATUS'><i class='material-icons'>folder</i>$aa</span><span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
             echo "<div class='collapsible-body'>
