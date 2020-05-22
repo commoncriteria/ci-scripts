@@ -151,13 +151,13 @@ EOF
             T_VER=""
             if [ -r ${PP_JOBS_DIR}/pp/$aa/meta-info.txt ]; then
                T_VER=$(grep '^T_VER=' ${PP_JOBS_DIR}/pp/$aa/meta-info.txt)
-               if [ "$IDEAL_TRANFORMS" == "$T_VER"]; then
+               if [ "$IDEAL_TRANFORMS" == "$T_VER" ]; then
                  T_STATUS=' uses_current_transforms'
                fi
             fi
             pwd >&2
             echo "<li>
-                <div class='collapsible-header'><span class='pp_title$T_STATUS'><i class='material-icons'>folder qqq: $T_VER</i>$aa</span><span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
+                <div class='collapsible-header'><span class='pp_title$T_STATUS'><i class='material-icons'>folder</i>$aa</span><span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
             echo "<div class='collapsible-body'>
                     <table class='bordered striped'>
                       <thead>
