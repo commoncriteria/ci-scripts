@@ -115,7 +115,7 @@ function createWebsite {
 		vertical-align: middle;
                 float: right;
 	      }
-          uses_current_transforms{
+          .uses_current_transforms{
              color: green;
           }
           </style>
