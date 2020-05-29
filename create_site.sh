@@ -3,7 +3,7 @@ set -ev
 # This is the transforms commit branch/timestamp that all projects should
 # basically be building to. It's hardcoded right here (not optimal), but
 # it'll do for now.
-IDEAL_TRANSFORMS="T_VER=master-2020-05-22_12:06:18_-0400"
+IDEAL_TRANSFORMS="T_VER=master-2020-05-29_10:54:25_-0400"
 
 PP_JOBS_DIR=$TRAVIS_BUILD_DIR/commoncriteria.github.io
 CURRENTLY_BUILDING=$(basename $TRAVIS_REPO_SLUG)
