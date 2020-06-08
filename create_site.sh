@@ -115,9 +115,14 @@ function createWebsite {
 		vertical-align: middle;
                 float: right;
 	      }
-          .uses_current_transforms{
-             color: green;
-          }
+              .uses_current_transforms{
+                color: green;
+              }
+              .uses_current_transforms::after{
+                content: "★";
+              }
+
+
           </style>
 
           <!--Let browser know website is optimized for mobile-->
