@@ -196,13 +196,13 @@ EOF
 
                 echo "<tr>
                           <td>${basename##*/}</td>
-                          <td><a href='$htmlfile_url'><img class='html-image' title='HTML'></img>"
+                          <td><a href='$htmlfile_url' class='html-image'><img title='HTML'></img>"
 
                 if [ -r $pdffile ] ; then
-    		        echo "<a href='$pdf_url'><img class='pdf-image' title='PDF'></img></a>"
+    		        echo "<a href='$pdf_url' class='pdf-image'><img title='PDF'></img></a>"
                 fi
     		    if [ -r $pdfpaged ]; then
-    		        echo "<a href='$pdf_paged_url'><img class='num-pdf-image' title='PDF w/ Page Numbering'></img></a>"
+    		        echo "<a href='$pdf_paged_url' class='num-pdf-image'><img title='PDF w/ Page Numbering'></img></a>"
     		    fi
     	        echo "</td><td>"
                 if [ "$CURRENTLY_BUILDING" == "$aa" ]; then
