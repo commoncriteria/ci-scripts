@@ -160,15 +160,17 @@ EOF
 	    BUILD_TIME=""
 	    META_FILE=${PP_JOBS_DIR}/pp/$aa/meta-info.txt
             if [ -r "$META_FILE" ]; then
-               T_VER=$(grep '^T_VER=' $META_FILE)
+
+	       T_VER=$(grep '^T_VER=' $META_FILE)
 	       BUILD_TIME=$(grep '^BUILD_TIME=' $META_FILE | tail -c +12)
                if [ "$IDEAL_TRANSFORMS" == "$T_VER" ]; then
                  T_STATUS=' uses_current_transforms'
                fi
             fi
             pwd >&2
+
 	    info "Look for $IDEAL_TRANSFORMS"
-	    info "T_VER is $T_VER"
+	    info "$aa: T_VER is $T_VER"
 	    info "T_STATUS is $T_STATUS"
             echo "<li>
                 <div class='collapsible-header'><span class='pp_title$T_STATUS'><i class='material-icons'>folder</i>$aa</span><span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
