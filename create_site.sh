@@ -207,12 +207,20 @@ EOF
     		        echo "<a href='$pdf_paged_url' class='num-pdf-image'><img title='PDF w/ Page Numbering'></img></a>"
     		    fi
     	        echo "</td><td>"
+# TODO: Once all built PPs have meta-info.txt files in commoncriteria.github.com/pp/$aa/ then we can just echo the BUILD_TIME
                 if [ "$CURRENTLY_BUILDING" == "$aa" ]; then
-                    stat -c "%.16z" ${htmlfile}
+                    if [ -r "$META_FILE" ]; then
+                        echo "$BUILD_TIME"
+                    else
+                        stat -c "%.16z" ${htmlfile}
+                    fi
                 else
-		    PAST_DATE=$BUILD_TIME
-#                    PAST_DATE=$($TRAVIS_BUILD_DIR/ci-scripts/last_build_date.py $aa)
-                    echo "$PAST_DATE"
+                    if [ -r "$META_FILE" ]; then
+                        echo "$BUILD_TIME"
+                    else
+                        PAST_DATE=$($TRAVIS_BUILD_DIR/ci-scripts/last_build_date.py $aa)
+                        echo "$PAST_DATE"
+                    fi
                 fi
                 echo "</td></tr>"
             done
