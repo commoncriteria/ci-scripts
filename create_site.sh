@@ -127,7 +127,7 @@ function createWebsite {
 
           <!--Let browser know website is optimized for mobile-->
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <title>Common Criteria Protection Profile Schema Documentation</title>
+          <title>Common Criteria Protection Profiles</title>
         </head>
 
         <body>
@@ -146,7 +146,7 @@ function createWebsite {
               <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
               <!--Navigation bar Header-->
               <div class="nav-wrapper">
-                <a href="#!" class="brand-logo">Common Criteria Documents</a>
+                <a href="#!" class="brand-logo">Common Criteria Protection Profiles</a>
               </div>
             </nav>
 
