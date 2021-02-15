@@ -23,7 +23,7 @@ function createPDFs {
           # Make the PDF
     	    xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
 		--javascript-delay 15000 \
-		file://${PWD}/${PP_JOBS_DIR}/${PP_NAME}/${aa}?expand=on \
+		file://${PWD}/${aa}?expand=on \
 		./${PWD}/${PP_JOBS_DIR}/${PP_NAME}/$(basename ${aa%%.html}.pdf);
           if [ $? -eq 1 ]; then
               exitStatus=1
@@ -31,7 +31,7 @@ function createPDFs {
           fi
     	    xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
 		--javascript-delay 15000 --footer-right '[page]' \
-		file://${PWD}/${PP_JOBS_DIR}/${PP_NAME}/${aa}?expand=on \
+		file://${PWD}/${aa}?expand=on \
 		./${PWD}/${PP_JOBS_DIR}/${PP_NAME}/$(basename ${aa%%.html}-paged.pdf);
           if [ $? -eq 1 ]; then
               exitStatus=2
