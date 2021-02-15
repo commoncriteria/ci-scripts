@@ -5,7 +5,7 @@ set -ev
 # it'll do for now.
 IDEAL_TRANSFORMS="T_VER=$(cat ${PWD}/ci-scripts/CurrentTransforms.txt)"
 
-PP_JOBS_DIR=commoncriteria.github.io
+PP_JOBS_DIR=${PWD}/commoncriteria.github.io
 CURRENTLY_BUILDING=$(basename $GITHUB_REPOSITORY)
 function info(){
     echo $1 >&2
