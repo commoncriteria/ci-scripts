@@ -1,8 +1,8 @@
 #!/bin/bash
 
 set -ev
-PP_JOBS_DIR=$TRAVIS_BUILD_DIR/commoncriteria.github.io/pp
-PP_NAME=$(basename $TRAVIS_REPO_SLUG)
+PP_JOBS_DIR=commoncriteria.github.io/pp
+PP_NAME=$(basename $GITHUB_REPOSITORY)
 
 # Create PDF files
 function createPDFs {
