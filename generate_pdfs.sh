@@ -10,11 +10,14 @@ function createPDFs {
 
     echo ${PP_NAME}
     echo ${PWD}
+    echo $(pwd)
+    echo $(pwd)/${PP_JOBS_DIR}/${PP_NAME}/${PP_NAME}-release.html
+    echo ./${PWD}/${PP_JOBS_DIR}/${PP_NAME}/${PP_NAME}-release.pdf
     
 #    xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf --encoding utf-8 --javascript-delay 15000 http://google.com ./google.pdf
     xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
             --javascript-delay 15000  \
-            file://${PP_JOBS_DIR}/${PP_NAME}/${PP_NAME}-release.html?expand=on \
+            file://$(pwd)/${PP_JOBS_DIR}/${PP_NAME}/${PP_NAME}-release.html?expand=on \
             ./${PWD}/${PP_JOBS_DIR}/${PP_NAME}/${PP_NAME}-release.pdf;
 #    for aa in $(find ${PP_JOBS_DIR}/${PP_NAME} -mindepth 1 -name '*.html'); do
 #	  echo ${aa}
