@@ -3,10 +3,10 @@ set -ev
 # This is the transforms commit branch/timestamp that all projects should
 # basically be building to. It's hardcoded right here (not optimal), but
 # it'll do for now.
-IDEAL_TRANSFORMS="T_VER=$(cat $TRAVIS_BUILD_DIR/ci-scripts/CurrentTransforms.txt)"
+IDEAL_TRANSFORMS="T_VER=$(cat ${PWD}/ci-scripts/CurrentTransforms.txt)"
 
-PP_JOBS_DIR=$TRAVIS_BUILD_DIR/commoncriteria.github.io
-CURRENTLY_BUILDING=$(basename $TRAVIS_REPO_SLUG)
+PP_JOBS_DIR=commoncriteria.github.io
+CURRENTLY_BUILDING=$(basename $GITHUB_REPOSITORY)
 function info(){
     echo $1 >&2
 }
@@ -218,7 +218,7 @@ EOF
                     if [ -r "$META_FILE" ]; then
                         echo "$BUILD_TIME"
                     else
-                        PAST_DATE=$($TRAVIS_BUILD_DIR/ci-scripts/last_build_date.py $aa)
+                        PAST_DATE=$(${PWD}/ci-scripts/last_build_date.py $aa)
                         echo "$PAST_DATE"
                     fi
                 fi
@@ -252,7 +252,7 @@ function findDirectory() {
 
     #-- Is it called via the PATH
     if which $it  1>/dev/null 2>&1 ; then         # If it's in the path
-    	it=$(which $it)                           # Get where it is 
+    	it=$(which $it)                           # Get where it is
     fi
     #-- Check to see if it's a symlink
     if readlink $it >/dev/null; then              # If it's a link
