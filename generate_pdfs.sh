@@ -13,7 +13,7 @@ function createPDFs {
     for aa in $(find ${PP_JOBS_DIR}/${PP_NAME} -mindepth 1 -name '*.html'); do
 	  echo ${aa}
           # Make the PDF
-    	    > xvfb-run -- /usr/bin/wkhtmltopdf \
+    	    xvfb-run --auto-servernum /usr/bin/wkhtmltopdf \
 		--javascript-delay 15000 \
 		file://${aa}?expand=on \
 		./$PP_JOBS_DIR/$PP_NAME/$(basename ${aa%%.html}.pdf);
@@ -21,7 +21,7 @@ function createPDFs {
               exitStatus=1
               return $exitStatus
           fi
-    	    > xvfb-run -- /usr/bin/wkhtmltopdf \
+    	    xvfb-run --auto-servernum /usr/bin/wkhtmltopdf \
 		--javascript-delay 15000 --footer-right '[page]' \
 		file://${aa}?expand=on \
 		./$PP_JOBS_DIR/$PP_NAME/$(basename ${aa%%.html}-paged.pdf);
