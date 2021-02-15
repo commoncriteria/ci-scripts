@@ -11,11 +11,7 @@ function createPDFs {
     echo ${PP_NAME}
     echo ${PWD}
     
-    xvfb :0 -screen 0 1024x768x24 &
-    WKHTMLTOPDF="/usr/bin/wkhtmltopdf"
-    export DISPLAY=:0
-
-    $WKHTMLTOPDF --encoding utf-8 --javascript-delay 5 --use-xserver --margin-left 5 --margin-top 5 --margin-right 5 --margin-bottom 5 http://google.com ./google.pdf
+    xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf --encoding utf-8 --javascript-delay 15000 http://google.com ./google.pdf
 #    xvfb-run -- /usr/bin/wkhtmltopdf \
 #            --javascript-delay 15000  \
 #            file://${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.html?expand=on \
