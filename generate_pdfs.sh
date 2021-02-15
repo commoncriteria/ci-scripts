@@ -10,26 +10,30 @@ function createPDFs {
 
     echo ${PP_NAME}
     echo ${PWD}
-    for aa in $(find ${PP_JOBS_DIR}/${PP_NAME} -mindepth 1 -name '*.html'); do
-	  echo ${aa}
-          # Make the PDF
-    	    xvfb-run --auto-servernum /usr/bin/wkhtmltopdf \
-		--javascript-delay 15000 \
-		file://${aa}?expand=on \
-		./$PP_JOBS_DIR/$PP_NAME/$(basename ${aa%%.html}.pdf);
-          if [ $? -eq 1 ]; then
-              exitStatus=1
-              return $exitStatus
-          fi
-    	    xvfb-run --auto-servernum /usr/bin/wkhtmltopdf \
-		--javascript-delay 15000 --footer-right '[page]' \
-		file://${aa}?expand=on \
-		./$PP_JOBS_DIR/$PP_NAME/$(basename ${aa%%.html}-paged.pdf);
-          if [ $? -eq 1 ]; then
-              exitStatus=2
-              return $exitStatus
-          fi
-    done
+    xvfb-run -- /usr/bin/wkhtmltopdf \
+            --javascript-delay 15000  \
+            file://${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.html?expand=on \
+            ./${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.pdf;
+#    for aa in $(find ${PP_JOBS_DIR}/${PP_NAME} -mindepth 1 -name '*.html'); do
+#	  echo ${aa}
+#          # Make the PDF
+#    	    xvfb-run --auto-servernum /usr/bin/wkhtmltopdf \
+#		--javascript-delay 15000 \
+#		file://${aa}?expand=on \
+#		./$PP_JOBS_DIR/$PP_NAME/$(basename ${aa%%.html}.pdf);
+#          if [ $? -eq 1 ]; then
+#              exitStatus=1
+#              return $exitStatus
+#          fi
+#    	    xvfb-run --auto-servernum /usr/bin/wkhtmltopdf \
+#		--javascript-delay 15000 --footer-right '[page]' \
+#		file://${aa}?expand=on \
+#		./$PP_JOBS_DIR/$PP_NAME/$(basename ${aa%%.html}-paged.pdf);
+#          if [ $? -eq 1 ]; then
+#              exitStatus=2
+#              return $exitStatus
+#          fi
+#    done
     return $exitStatus
 }
 
