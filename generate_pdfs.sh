@@ -11,11 +11,11 @@ function createPDFs {
     echo ${PP_NAME}
     echo ${PWD}
     
-    xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf --encoding utf-8 --javascript-delay 15000 http://google.com ./google.pdf
-#    xvfb-run -- /usr/bin/wkhtmltopdf \
-#            --javascript-delay 15000  \
-#            file://${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.html?expand=on \
-#            ./${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.pdf;
+#    xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf --encoding utf-8 --javascript-delay 15000 http://google.com ./google.pdf
+    xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
+            --javascript-delay 15000  \
+            file://${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.html?expand=on \
+            ./${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.pdf;
 #    for aa in $(find ${PP_JOBS_DIR}/${PP_NAME} -mindepth 1 -name '*.html'); do
 #	  echo ${aa}
 #          # Make the PDF
