@@ -10,10 +10,15 @@ function createPDFs {
 
     echo ${PP_NAME}
     echo ${PWD}
-    xvfb-run -- /usr/bin/wkhtmltopdf \
-            --javascript-delay 15000  \
-            file://${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.html?expand=on \
-            ./${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.pdf;
+    
+    XVFB=`xvfb-run`
+    WKHTMLTOPDF="/usr/bin/wkhtmltopdf"
+
+    $XVFB -a -s "-screen 0 1280x1024x16" $WKHTMLTOPDF --encoding utf-8 --javascript-delay 5 --use-xserver --margin-left 5 --margin-top 5 --margin-right 5 --margin-bottom 5 http://google.com ./google.pdf
+#    xvfb-run -- /usr/bin/wkhtmltopdf \
+#            --javascript-delay 15000  \
+#            file://${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.html?expand=on \
+#            ./${PP_JOBS_DIR}/${PP_NAME}/${PWD##*/}-release.pdf;
 #    for aa in $(find ${PP_JOBS_DIR}/${PP_NAME} -mindepth 1 -name '*.html'); do
 #	  echo ${aa}
 #          # Make the PDF
