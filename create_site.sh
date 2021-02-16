@@ -5,6 +5,7 @@ set -ev
 # it'll do for now.
 IDEAL_TRANSFORMS="T_VER=$(cat ${PWD}/ci-scripts/CurrentTransforms.txt)"
 
+PP_DIR=${PWD}
 PP_JOBS_DIR=${PWD}/commoncriteria.github.io
 CURRENTLY_BUILDING=$(basename $GITHUB_REPOSITORY)
 function info(){
@@ -218,7 +219,7 @@ EOF
                     if [ -r "$META_FILE" ]; then
                         echo "$BUILD_TIME"
                     else
-                        PAST_DATE=$(${PWD}/ci-scripts/last_build_date.py $aa)
+                        PAST_DATE=$(${PP_DIR}/ci-scripts/last_build_date.py $aa)
                         echo "$PAST_DATE"
                     fi
                 fi
