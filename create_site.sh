@@ -174,7 +174,7 @@ EOF
 	    info "$aa: T_VER is $T_VER"
 	    info "T_STATUS is $T_STATUS"
             echo "<li>
-                <div class='collapsible-header'><span class='pp_title$T_STATUS'><i class='material-icons'>folder</i>$aa</span><span class='build_status'><img class='build_status' src='https://travis-ci.com/commoncriteria/$aa.svg?branch=master'></span></div>"
+                <div class='collapsible-header'><span class='pp_title$T_STATUS'><i class='material-icons'>folder</i>$aa</span><span class='build_status'><img class='build_status' src='https://github.com/commoncriteria/$aa/workflows/Build/badge.svg'></span></div>"
             echo "<div class='collapsible-body'>
                     <table class='bordered striped'>
                       <thead>
