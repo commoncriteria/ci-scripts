@@ -211,16 +211,16 @@ EOF
 # TODO: Once all built PPs have meta-info.txt files in commoncriteria.github.com/pp/$aa/ then we can just echo the BUILD_TIME
                 if [ "$CURRENTLY_BUILDING" == "$aa" ]; then
                     if [ -r "$META_FILE" ]; then
-                        echo "$BUILD_TIME"
+                        echo "$BUILD_TIME UTC"
                     else
                         stat -c "%.16z" ${htmlfile}
                     fi
                 else
                     if [ -r "$META_FILE" ]; then
-                        echo "$BUILD_TIME"
+                        echo "$BUILD_TIME UTC"
                     else
                         PAST_DATE=$(${PP_DIR}/ci-scripts/last_build_date.py $aa)
-                        echo "$PAST_DATE"
+                        echo "$PAST_DATE UTC"
                     fi
                 fi
                 echo "</td></tr>"
