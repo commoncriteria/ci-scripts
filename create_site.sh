@@ -175,8 +175,8 @@ EOF
 	    info "T_STATUS is $T_STATUS"
             echo "<li>"
             echo -n "  <div class='collapsible-header'><span class='pp_title$T_STATUS'><i class='material-icons'>folder</i>$aa</span>"
-            echo -n "     <span class='build_status'><img class='build_status' src='https://github.com/commoncriteria/$aa/workflows/Build/badge.svg'></span>"
-            echo -n "     <span class='build_status'><img class='build_status' src='https://github.com/commoncriteria/$aa/workflows/Validate/badge.svg'></span>"
+            echo -n "<span class='build_status'><img class='valid_status' src='https://github.com/commoncriteria/$aa/workflows/Build/badge.svg'>"
+            echo -n "     <img class='build_status' src='https://github.com/commoncriteria/$aa/workflows/Validate/badge.svg'></span>"
             echo "</div>"
             echo "<div class='collapsible-body'>
                     <table class='bordered striped'>
