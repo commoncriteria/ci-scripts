@@ -4,7 +4,7 @@ set -ev
 # basically be building to. It's hardcoded right here (not optimal), but
 # it'll do for now.
 IDEAL_TRANSFORMS="T_VER=$(cat ${PWD}/ci-scripts/CurrentTransforms.txt)"
-
+IGNORE_PROJECTS="app-vetting"
 PP_DIR=${PWD}
 PP_JOBS_DIR=${PWD}/commoncriteria.github.io
 CURRENTLY_BUILDING=$(basename $GITHUB_REPOSITORY)
@@ -23,7 +23,11 @@ function delete_backup_index {
 function findProtectionProfiles {
     PP_WITH_PATH=$(find ${PP_JOBS_DIR}/pp -maxdepth 1 -mindepth 1 -type d -not -path "*/transforms")
     for path in "${PP_WITH_PATH[@]}"; do
-        PP_NAMES+=$(echo "${path}"|rev|cut -d '/' -f1|rev|sort)
+        PP_NAME=$(echo "${path}"|rev|cut -d '/' -f1|rev|sort)
+        info "PP_NAME is $PP_NAME vs ${path##*/}"
+        if [[ "$IGNORE_PROJECTS" == *"$PP_NAME"* ]]; then
+          PP_NAMES+=$PP_NAME
+        fi
     done
 }
 # Function to create index.html (Page displaying all Protection Profiles)
