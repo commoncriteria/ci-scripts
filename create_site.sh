@@ -116,7 +116,7 @@ function createWebsite {
                 width: 50%;
 	      }
 
-	      img.build_status img.validate_status{
+	      img.build_status, img.valid_status{
 		vertical-align: middle;
                 float: right;
 	      }
