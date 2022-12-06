@@ -12,7 +12,7 @@ function createPDFs {
     for aa in $(find ${PP_JOBS_DIR}/${PP_NAME} -mindepth 1 -name '*.html'); do
           # Make the PDF
     	xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' \
-		 /usr/bin/wkhtmltopdf --javascript-delay 15000 --allow\
+		 /usr/bin/wkhtmltopdf --javascript-delay 15000  --enable-local-file-access\
 		file://${PWD}/${aa}?expand=on \
 		${PWD}/${PP_JOBS_DIR}/${PP_NAME}/$(basename ${aa%%.html}.pdf);
           if [ $? -eq 1 ]; then
@@ -20,7 +20,7 @@ function createPDFs {
               return $exitStatus
           fi
     	  xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' \
-		 /usr/bin/wkhtmltopdf --javascript-delay 15000 --allow\		   
+		 /usr/bin/wkhtmltopdf --javascript-delay 15000  --enable-local-file-access\		   
 		 --footer-right '[page]' \
 		file://${PWD}/${aa}?expand=on \
 		${PWD}/${PP_JOBS_DIR}/${PP_NAME}/$(basename ${aa%%.html}-paged.pdf);
